@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   containter: {
     flex: 1,
     paddingTop: 30,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
   },
   header: {
     alignItems: 'center',

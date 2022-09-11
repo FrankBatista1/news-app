@@ -14,7 +14,8 @@ import {articlesResponseType, articleType} from '../types/articles';
 
 const HomePageNews = () => {
   const [articles, setArticles] = useState<Array<articleType>>([]);
-  const [country, setCountry] = useState<String>('Choose country');
+  const [country, setCountry] = useState<String>('Choose country (default United States)');
+  const [category, setCategory] = useState<String>('Choose category (default no category)');
   const apiKey = API_KEY;
   async function getNewsFromApi(): Promise<any> {
     try {
@@ -34,28 +35,53 @@ const HomePageNews = () => {
     getNewsFromApi();
   }, []);
   return (
-    <>
-      <Text> Trending news in </Text>
+    <View style={styles.parent}>
+      <View style={styles.nav}>
+        <Text style={styles.trending}>Trending news in</Text>
+        <Pressable >
+          <Text style={styles.selection}>{country}</Text>
+        </Pressable>
+        <Pressable >
+          <Text style={styles.selection}>{category}</Text>
+        </Pressable>
+      </View>
       <ScrollView style={styles.container}>
         {articles.map((article: articleType, idx) => {
-            return (
-              <Pressable style={styles.newsTitle} onPress={() => Linking.openURL(article.url)} key={idx}>
-                <Text>{article.title} </Text>
-              </Pressable>
-            );
+          return (
+            <Pressable onPress={() => Linking.openURL(article.url)} key={idx}>
+              <Text style={styles.newsTitle}>{article.title} </Text>
+            </Pressable>
+          );
         })}
       </ScrollView>
-    </>
+    </View>
   );
 };
 const styles = StyleSheet.create({
+  trending: {
+    color: 'black'
+  },
+  nav: {
+    padding: 5,
+    fontSize: 18,
+    alignItems: 'center',
+  },
+  selection: {
+    color: 'black',
+    backgroundColor: 'grey',
+    margin: 5,
+    padding: 3,
+    borderWidth: 2,
+  },
   container: {
     padding: 10,
+
   },
   newsTitle: {
-    fontSize: 20,
+    fontSize: 16,
     paddingTop: 10,
     color: 'black',
+    textDecorationLine: 'underline',
   },
 });
 
