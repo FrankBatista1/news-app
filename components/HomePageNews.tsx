@@ -8,14 +8,19 @@ import {
   StyleSheet,
   Text,
   View,
+  StatusBar
 } from 'react-native';
 import {API_KEY} from '@env';
 import {articlesResponseType, articleType} from '../types/articles';
 
 const HomePageNews = () => {
   const [articles, setArticles] = useState<Array<articleType>>([]);
-  const [country, setCountry] = useState<String>('Choose country (default United States)');
-  const [category, setCategory] = useState<String>('Choose category (default no category)');
+  const [country, setCountry] = useState<String>(
+    'Choose country (default United States)',
+  );
+  const [category, setCategory] = useState<String>(
+    'Choose category (default no category)',
+  );
   const apiKey = API_KEY;
   async function getNewsFromApi(): Promise<any> {
     try {
@@ -25,7 +30,6 @@ const HomePageNews = () => {
       const articlesResponse: articlesResponseType =
         await articlesFrontPageResponseJson.json();
       setArticles(articlesResponse.articles);
-      console.log(articles);
     } catch (error) {
       throw error;
     }
@@ -35,31 +39,36 @@ const HomePageNews = () => {
     getNewsFromApi();
   }, []);
   return (
-    <View style={styles.parent}>
+    <View >
       <View style={styles.nav}>
         <Text style={styles.trending}>Trending news in</Text>
-        <Pressable >
+        <Pressable>
           <Text style={styles.selection}>{country}</Text>
         </Pressable>
-        <Pressable >
+        <Pressable>
           <Text style={styles.selection}>{category}</Text>
         </Pressable>
       </View>
-      <ScrollView style={styles.container}>
-        {articles.map((article: articleType, idx) => {
-          return (
-            <Pressable onPress={() => Linking.openURL(article.url)} key={idx}>
-              <Text style={styles.newsTitle}>{article.title} </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
+      <View style={styles.scrollViewContainer}>
+        <ScrollView style={styles.newsList}>
+          {articles.map((article: articleType, idx) => {
+            return (
+              <Pressable onPress={() => Linking.openURL(article.url)} key={idx}>
+                <Text style={styles.newsTitle}>{article.title} </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
+  newsList: {
+    marginHorizontal: 10,
+  },
   trending: {
-    color: 'black'
+    color: 'black',
   },
   nav: {
     padding: 5,
@@ -73,9 +82,8 @@ const styles = StyleSheet.create({
     padding: 3,
     borderWidth: 2,
   },
-  container: {
-    padding: 10,
-
+  scrollViewContainer: {
+    paddingBottom: 50
   },
   newsTitle: {
     fontSize: 16,
