@@ -5,7 +5,7 @@ import styles from '../styles/HomePageStyles';
 
 const HomePage = () => {
   return (
-    <View style={{flex: 1}}>
+    <View>
       <ScrollView style={styles.containter}>
         <View style={styles.header}>
           <Text style={styles.title}>NewNews</Text>

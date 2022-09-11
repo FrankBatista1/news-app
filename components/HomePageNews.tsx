@@ -1,17 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Button,
-  FlatList,
-  Linking,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  StatusBar
-} from 'react-native';
+import {Linking, Pressable, ScrollView, Text, View} from 'react-native';
 import {API_KEY} from '@env';
 import {articlesResponseType, articleType} from '../types/articles';
+import styles from '../styles/HomePageNewsStyle';
 
 const HomePageNews = () => {
   const [articles, setArticles] = useState<Array<articleType>>([]);
@@ -39,7 +30,7 @@ const HomePageNews = () => {
     getNewsFromApi();
   }, []);
   return (
-    <View >
+    <View>
       <View style={styles.nav}>
         <Text style={styles.trending}>Trending news in</Text>
         <Pressable>
@@ -63,34 +54,5 @@ const HomePageNews = () => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  newsList: {
-    marginHorizontal: 10,
-  },
-  trending: {
-    color: 'black',
-  },
-  nav: {
-    padding: 5,
-    fontSize: 18,
-    alignItems: 'center',
-  },
-  selection: {
-    color: 'black',
-    backgroundColor: 'grey',
-    margin: 5,
-    padding: 3,
-    borderWidth: 2,
-  },
-  scrollViewContainer: {
-    paddingBottom: 50
-  },
-  newsTitle: {
-    fontSize: 16,
-    paddingTop: 10,
-    color: 'black',
-    textDecorationLine: 'underline',
-  },
-});
 
 export default HomePageNews;
