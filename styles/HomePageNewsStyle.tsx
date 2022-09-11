@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     padding: 3,
     borderWidth: 2,
   },
-  scrollViewContainer: {
+  newsContainer: {
     paddingBottom: 50
   },
   newsTitle: {

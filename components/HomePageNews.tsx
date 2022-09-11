@@ -4,7 +4,7 @@ import {API_KEY} from '@env';
 import {articlesResponseType, articleType} from '../types/articles';
 import styles from '../styles/HomePageNewsStyle';
 
-const HomePageNews = () => {
+const HomePageNews = (props:any) => {
   const [articles, setArticles] = useState<Array<articleType>>([]);
   const [country, setCountry] = useState<String>(
     'Choose country (default United States)',
@@ -33,15 +33,12 @@ const HomePageNews = () => {
     <View>
       <View style={styles.nav}>
         <Text style={styles.trending}>Trending news in</Text>
-        <Pressable>
+        <Pressable onPress={() => props.navigation.navigate('Countries', {name: 'Countries'})}>
           <Text style={styles.selection}>{country}</Text>
         </Pressable>
-        <Pressable>
-          <Text style={styles.selection}>{category}</Text>
-        </Pressable>
       </View>
-      <View style={styles.scrollViewContainer}>
-        <ScrollView style={styles.newsList}>
+      <View style={styles.newsContainer}>
+        <View style={styles.newsList}>
           {articles.map((article: articleType, idx) => {
             return (
               <Pressable onPress={() => Linking.openURL(article.url)} key={idx}>
@@ -49,7 +46,7 @@ const HomePageNews = () => {
               </Pressable>
             );
           })}
-        </ScrollView>
+        </View>
       </View>
     </View>
   );

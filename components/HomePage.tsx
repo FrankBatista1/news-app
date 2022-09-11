@@ -3,7 +3,7 @@ import {View, Text, ScrollView} from 'react-native';
 import HomePageNews from './HomePageNews';
 import styles from '../styles/HomePageStyles';
 
-const HomePage = () => {
+const HomePage = ({navigation} : any) => {
   return (
     <View>
       <ScrollView style={styles.containter}>
@@ -11,7 +11,7 @@ const HomePage = () => {
           <Text style={styles.title}>NewNews</Text>
         </View>
         <View style={{height: '100%'}}>
-          <HomePageNews></HomePageNews>
+          <HomePageNews navigation={navigation}></HomePageNews>
         </View>
       </ScrollView>
     </View>
