@@ -7,7 +7,7 @@ import styles from '../styles/HomePageNewsStyle';
 const HomePageNews = (props:any) => {
   const [articles, setArticles] = useState<Array<articleType>>([]);
   const [country, setCountry] = useState<String>(
-    'Choose country (default United States)',
+    'us',
   );
   const [category, setCategory] = useState<String>(
     'Choose category (default no category)',
@@ -16,7 +16,7 @@ const HomePageNews = (props:any) => {
   async function getNewsFromApi(): Promise<any> {
     try {
       const articlesFrontPageResponseJson = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`,
+        `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${apiKey}`,
       );
       const articlesResponse: articlesResponseType =
         await articlesFrontPageResponseJson.json();
@@ -27,14 +27,19 @@ const HomePageNews = (props:any) => {
   }
 
   useEffect(() => {
+    if(props.route.params) {
+      setCountry((props.route.params.country.nameISO3366))
+    }
     getNewsFromApi();
-  }, []);
+
+  }, [props.route.params]);
+ 
   return (
     <View>
       <View style={styles.nav}>
         <Text style={styles.trending}>Trending news in</Text>
-        <Pressable onPress={() => props.navigation.navigate('Countries', {name: 'Countries'})}>
-          <Text style={styles.selection}>{country}</Text>
+        <Pressable onPress={() => props.navigation.navigate('Countries', {country: country})}>
+          <Text style={styles.selection}>Choose categorie defautlt: {country}</Text>
         </Pressable>
       </View>
       <View style={styles.newsContainer}>
