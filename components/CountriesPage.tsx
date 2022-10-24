@@ -11,8 +11,7 @@ type Props = {
 
 
 function CountriesPage({navigation}: Props) {
- 
-  const [countriesISO, setCountriesISO ] = useState<Object>({})
+  const [countriesISO, setCountriesISO ] = useState<Object>({});
   useEffect(() => {
     setCountriesISO(countries)
   }, []);
