@@ -2,27 +2,27 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
 import {View, Pressable, Text} from 'react-native';
 import {RootStackProps} from '../App';
-import countries from '../resources/countries';
+import categories from '../resources/categories';
 
 type Props = {
-  navigation: NativeStackNavigationProp<RootStackProps, 'Countries'>;
+  navigation: NativeStackNavigationProp<RootStackProps, 'Categories'>;
 };
 
-function CountriesPage({navigation}: Props) {
-  const [countriesISO, setCountriesISO] = useState<Object>({});
+function CategoriesPage({navigation}: Props) {
+  const [categoriesISO, setCategoriesISO] = useState<Array<Object>>([]);
   useEffect(() => {
-    setCountriesISO(countries);
+    setCategoriesISO(categories);
   }, []);
   return (
     <View>
-      {countries.map((country: any, idx: number) => {
+      {categories.map((category: any, idx: number) => {
         return (
           <Pressable
             key={idx}
             onPress={() => {
-              navigation.navigate('Home', {country});
+              navigation.navigate('Home', {category});
             }}>
-            <Text>{country.countryName}</Text>
+            <Text>{category}</Text>
           </Pressable>
         );
       })}
@@ -30,4 +30,4 @@ function CountriesPage({navigation}: Props) {
   );
 }
 
-export default CountriesPage;
+export default CategoriesPage;

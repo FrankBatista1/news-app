@@ -3,12 +3,15 @@ import React from 'react';
 import HomePage from './components/HomePage';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CountriesPage from './components/CountriesPage';
+import CategoriesPage from './components/CategoriesPage';
 
 export type RootStackProps = {
   Home: {
     country?: object;
+    category?: String;
   }
   Countries: undefined;
+  Categories: undefined;
 }
 const Stack = createNativeStackNavigator<RootStackProps>();
 
@@ -25,7 +28,12 @@ const App = () => {
         <Stack.Screen
           name="Countries"
           component={CountriesPage}
-          options={{title: 'Choosse country'}}
+          options={{title: 'Choose country'}}
+        />
+        <Stack.Screen
+          name="Categories"
+          component={CategoriesPage}
+          options={{title: 'Choose category'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

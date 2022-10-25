@@ -6,15 +6,15 @@ import styles from '../styles/HomePageNewsStyle';
 
 const HomePageNews = (props: any) => {
   const [articles, setArticles] = useState<Array<articleType>>([]);
-  const [country, setCountry] = useState<String>('us');
+  const [country, setCountry] = useState<String>('US');
   const [category, setCategory] = useState<String>(
-    'Choose category (default no category)',
+    'General',
   );
   const apiKey = API_KEY;
   async function getNewsFromApi(): Promise<any> {
     try {
       const articlesFrontPageResponseJson = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${apiKey}`,
+        `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`,
       );
       const articlesResponse: articlesResponseType =
         await articlesFrontPageResponseJson.json();
@@ -42,6 +42,10 @@ const HomePageNews = (props: any) => {
         <Pressable
           onPress={() => props.navigation.navigate('Countries', {country})}>
           <Text style={styles.selection}>Choose country: {country}</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => props.navigation.navigate('Categories', {category})}>
+          <Text style={styles.selection}>Choose category: {category}</Text>
         </Pressable>
       </View>
       <View style={styles.newsContainer}>
