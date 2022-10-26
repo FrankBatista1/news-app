@@ -7,9 +7,7 @@ import styles from '../styles/HomePageNewsStyle';
 const HomePageNews = (props: any) => {
   const [articles, setArticles] = useState<Array<articleType>>([]);
   const [country, setCountry] = useState<String>('US');
-  const [category, setCategory] = useState<String>(
-    'General',
-  );
+  const [category, setCategory] = useState<String>('General');
   const apiKey = API_KEY;
   async function getNewsFromApi(): Promise<any> {
     try {
@@ -23,17 +21,19 @@ const HomePageNews = (props: any) => {
       throw error;
     }
   }
-  
+
   useEffect(() => {
-    if (props.route.params) {
-      setCountry(props.route.params.country.nameISO3366);
+    if (props.route.params?.country?.nameISO3366) {
+      setCountry(props.route.params.country?.nameISO3366);
+    }
+    if (props.route.params?.category) {
+      setCategory(props.route.params?.category);
     }
   }, [props.route.params]);
 
   useEffect(() => {
     getNewsFromApi();
-  },[country]);
-  
+  }, [country,category]);
 
   return (
     <View>
