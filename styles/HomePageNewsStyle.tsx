@@ -19,6 +19,13 @@ const styles = StyleSheet.create({
     padding: 3,
     borderWidth: 2,
   },
+  search: {
+    color: 'black',
+    margin: 5,
+    padding: 3,
+    borderWidth: 2,
+    width: 200
+  },
   newsContainer: {
     paddingBottom: 50
   },

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Linking, Pressable, ScrollView, Text, View} from 'react-native';
+import {Linking, Pressable, ScrollView, Text, TextInput, View} from 'react-native';
 import {API_KEY} from '@env';
 import {articlesResponseType, articleType} from '../types/articles';
 import styles from '../styles/HomePageNewsStyle';
 
 const HomePageNews = (props: any) => {
+  const [search, onChangeSearch] = useState("");
   const [articles, setArticles] = useState<Array<articleType>>([]);
   const [country, setCountry] = useState<String>('US');
   const [category, setCategory] = useState<String>('General');
@@ -12,7 +13,7 @@ const HomePageNews = (props: any) => {
   async function getNewsFromApi(): Promise<any> {
     try {
       const articlesFrontPageResponseJson = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`,
+        `https://newsapi.org/v2/top-headlines?pageSize=100&country=${country}&category=${category}&apiKey=${apiKey}`,
       );
       const articlesResponse: articlesResponseType =
         await articlesFrontPageResponseJson.json();
@@ -47,6 +48,12 @@ const HomePageNews = (props: any) => {
           onPress={() => props.navigation.navigate('Categories', {category})}>
           <Text style={styles.selection}>Choose category: {category}</Text>
         </Pressable>
+        <TextInput
+        style={styles.search}
+        onChangeText={onChangeSearch}
+        value={search}
+      />
+      <Pressable><Text>🔍 Search</Text></Pressable>
       </View>
       <View style={styles.newsContainer}>
         <View style={styles.newsList}>

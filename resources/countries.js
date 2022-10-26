@@ -1,7 +1,7 @@
 const countries = [
   {countryName: 'United_Arab_Emirates' , nameISO3366: 'AE'},
   {countryName: 'Argentina' , nameISO3366: 'AR'},
-  {countryName: 'Austria' , nameISO3366: ' AT'},
+  // {countryName: 'Austria' , nameISO3366: ' AT'},
   {countryName: 'Australia' , nameISO3366: 'AU'},
   {countryName: 'Belgium' , nameISO3366: 'BE'},
   {countryName: 'Bulgaria' , nameISO3366: 'BG'},
@@ -17,7 +17,7 @@ const countries = [
   {countryName: 'France' , nameISO3366: 'FR'},
   {countryName: 'United Kingdom' , nameISO3366: 'GB'},
   {countryName: 'Greece' , nameISO3366: 'GR'},
-  {countryName: 'Hong Kong' , nameISO3366: ' HK'},
+  // {countryName: 'Hong Kong' , nameISO3366: ' HK'},
   {countryName: 'Hungary' , nameISO3366: 'HU'},
   {countryName: 'Indonesia' , nameISO3366: 'ID'},
   {countryName: 'Ireland' , nameISO3366: 'IE'},
