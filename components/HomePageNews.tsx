@@ -3,6 +3,7 @@ import {Linking, Pressable, ScrollView, Text, TextInput, View} from 'react-nativ
 import {API_KEY} from '@env';
 import {articlesResponseType, articleType} from '../types/articles';
 import styles from '../styles/HomePageNewsStyle';
+import SearchBar from './SearchBar';
 
 const HomePageNews = (props: any) => {
   const [search, onChangeSearch] = useState("");
@@ -53,6 +54,7 @@ const HomePageNews = (props: any) => {
         onChangeText={onChangeSearch}
         value={search}
       />
+      <SearchBar></SearchBar>
       <Pressable><Text>🔍 Search</Text></Pressable>
       </View>
       <View style={styles.newsContainer}>
