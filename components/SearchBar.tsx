@@ -15,7 +15,7 @@ const SearchBar = ({
           clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
         }>
         <Icon
-          name="search"
+          name="magnifying-glass"
           size={20}
           color="black"
           style={{marginLeft: 1}}
