@@ -43,19 +43,13 @@ const HomePageNews = (props: any) => {
         <Text style={styles.trending}>Trending news in</Text>
         <Pressable
           onPress={() => props.navigation.navigate('Countries', {country})}>
-          <Text style={styles.selection}>Choose country: {country}</Text>
+          <Text style={styles.selection}>Country: {country}</Text>
         </Pressable>
         <Pressable
           onPress={() => props.navigation.navigate('Categories', {category})}>
-          <Text style={styles.selection}>Choose category: {category}</Text>
+          <Text style={styles.selection}>Category: {category}</Text>
         </Pressable>
-        <TextInput
-        style={styles.search}
-        onChangeText={onChangeSearch}
-        value={search}
-      />
       <SearchBar></SearchBar>
-      <Pressable><Text>🔍 Search</Text></Pressable>
       </View>
       <View style={styles.newsContainer}>
         <View style={styles.newsList}>

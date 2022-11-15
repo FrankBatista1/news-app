@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   },
   trending: {
     color: 'black',
+    fontSize: 17
   },
   nav: {
     padding: 5,
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 3,
     borderWidth: 2,
+    fontSize: 20
   },
   search: {
     color: 'black',
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50
   },
   newsTitle: {
-    fontSize: 16,
+    fontSize: 18,
     paddingTop: 10,
     color: 'black',
     textDecorationLine: 'underline',
