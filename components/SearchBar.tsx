@@ -15,12 +15,12 @@ const SearchBar = ({
         style={
           clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
         }>
-        <Icon
+        {!clicked &&<Icon
           name="magnifying-glass"
           size={20}
           color="black"
           style={{marginLeft: 1}}
-        />
+        />}
         <TextInput
           style={styles.input}
           placeholder="Search"
@@ -35,7 +35,7 @@ const SearchBar = ({
             name="cross"
             size={20}
             color="black"
-            style={{padding: 1}}
+            style={{right: 5}}
             onPress={() => {
               setSearchPhrase('');
             }}

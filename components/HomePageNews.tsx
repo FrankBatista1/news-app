@@ -14,7 +14,9 @@ const HomePageNews = (props: any) => {
   const apiKey = API_KEY;
   async function getNewsFromApi(): Promise<any> {
     try {
-      const articlesFrontPageResponseJson = await fetch(
+      const articlesFrontPageResponseJson = searchPhrase ? await fetch(
+        `https://newsapi.org/v2/top-headlines?q=${searchPhrase}&pageSize=100&country=${country}&category=${category}&apiKey=${apiKey}`,
+      ): await fetch(
         `https://newsapi.org/v2/top-headlines?pageSize=100&country=${country}&category=${category}&apiKey=${apiKey}`,
       );
       const articlesResponse: articlesResponseType =
@@ -36,7 +38,7 @@ const HomePageNews = (props: any) => {
 
   useEffect(() => {
     getNewsFromApi();
-  }, [country,category]);
+  }, [country,category, searchPhrase]);
 
   return (
     <View>
@@ -50,8 +52,7 @@ const HomePageNews = (props: any) => {
           onPress={() => props.navigation.navigate('Categories', {category})}>
           <Text style={styles.selection}>Category: {category}</Text>
         </Pressable>
-      <SearchBar clicked={clicked
-      } setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} />
+      <SearchBar clicked={clicked} setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} />
       </View>
       <View style={styles.newsContainer}>
         <View style={styles.newsList}>
