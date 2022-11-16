@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, Keyboard} from 'react-native';
 import HomePageNews from './HomePageNews';
 import styles from '../styles/HomePageStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';

@@ -12,11 +12,11 @@ const HomePageNews = (props: any) => {
   const [country, setCountry] = useState<String>('US');
   const [category, setCategory] = useState<String>('General');
   const apiKey = API_KEY;
-  async function getNewsFromApi(): Promise<any> {
+  async function getNewsFromApi(phraseToBeSearched = ''): Promise<any> {
     try {
-      const articlesFrontPageResponseJson = searchPhrase ? await fetch(
-        `https://newsapi.org/v2/top-headlines?q=${searchPhrase}&pageSize=100&country=${country}&category=${category}&apiKey=${apiKey}`,
-      ): await fetch(
+      const articlesFrontPageResponseJson = phraseToBeSearched ? await fetch(
+        `https://newsapi.org/v2/top-headlines?q=${phraseToBeSearched}&pageSize=100&country=${country}&category=${category}&apiKey=${apiKey}`,
+      ) : await fetch(
         `https://newsapi.org/v2/top-headlines?pageSize=100&country=${country}&category=${category}&apiKey=${apiKey}`,
       );
       const articlesResponse: articlesResponseType =
@@ -38,7 +38,7 @@ const HomePageNews = (props: any) => {
 
   useEffect(() => {
     getNewsFromApi();
-  }, [country,category, searchPhrase]);
+  }, [country,category]);
 
   return (
     <View>
@@ -52,7 +52,7 @@ const HomePageNews = (props: any) => {
           onPress={() => props.navigation.navigate('Categories', {category})}>
           <Text style={styles.selection}>Category: {category}</Text>
         </Pressable>
-      <SearchBar clicked={clicked} setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} />
+      <SearchBar getNewsFromApi={getNewsFromApi} clicked={clicked} setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} />
       </View>
       <View style={styles.newsContainer}>
         <View style={styles.newsList}>

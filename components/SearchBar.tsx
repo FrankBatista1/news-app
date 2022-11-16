@@ -8,6 +8,7 @@ const SearchBar = ({
   searchPhrase,
   setSearchPhrase,
   setClicked,
+  getNewsFromApi
 }: any) => {
   return (
     <View style={styles.container}>
@@ -38,6 +39,9 @@ const SearchBar = ({
             style={{right: 5}}
             onPress={() => {
               setSearchPhrase('');
+              setClicked(false);
+              Keyboard.dismiss();
+              getNewsFromApi();
             }}
           />
         )}
@@ -45,10 +49,11 @@ const SearchBar = ({
       {clicked && (
         <View>
           <Button
-            title="Cancel"
+            title="Search"
             onPress={() => {
               Keyboard.dismiss();
               setClicked(false);
+              getNewsFromApi(searchPhrase)
             }}></Button>
         </View>
       )}
