@@ -6,7 +6,8 @@ import styles from '../styles/HomePageNewsStyle';
 import SearchBar from './SearchBar';
 
 const HomePageNews = (props: any) => {
-  const [search, onChangeSearch] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [searchPhrase, setSearchPhrase] = useState("");
   const [articles, setArticles] = useState<Array<articleType>>([]);
   const [country, setCountry] = useState<String>('US');
   const [category, setCategory] = useState<String>('General');
@@ -49,7 +50,8 @@ const HomePageNews = (props: any) => {
           onPress={() => props.navigation.navigate('Categories', {category})}>
           <Text style={styles.selection}>Category: {category}</Text>
         </Pressable>
-      <SearchBar></SearchBar>
+      <SearchBar clicked={clicked
+      } setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} />
       </View>
       <View style={styles.newsContainer}>
         <View style={styles.newsList}>
