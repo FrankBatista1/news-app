@@ -3,13 +3,20 @@ import { TextInput, View, Keyboard, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import styles from '../styles/SearchBar';
 
+interface SearchFunctionality {
+  clicked: boolean;
+  searchPhrase: string;
+  setSearchPhrase: (val: string) => void;
+  setClicked: Function;
+  getNewsFromApi: Function;
+}
 const SearchBar = ({
   clicked,
   searchPhrase,
   setSearchPhrase,
   setClicked,
   getNewsFromApi
-}: any) => {
+}: SearchFunctionality) => {
   return (
     <View style={styles.container}>
       <View

@@ -12,7 +12,7 @@ const HomePageNews = (props: any) => {
   const [country, setCountry] = useState<String>('US');
   const [category, setCategory] = useState<String>('General');
   const apiKey = API_KEY;
-  async function getNewsFromApi(phraseToBeSearched = ''): Promise<any> {
+  async function getNewsFromApi(phraseToBeSearched = ''): Promise<void> {
     try {
       const articlesFrontPageResponseJson = phraseToBeSearched ? await fetch(
         `https://newsapi.org/v2/top-headlines?q=${phraseToBeSearched}&pageSize=100&country=${country}&category=${category}&apiKey=${apiKey}`,
